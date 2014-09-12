@@ -14,6 +14,7 @@ public class player1
 	private ContestEvaluation evaluation_;
 	private int evaluations_limit_;
 	private Population population;
+	private int j;
 	
 	public player1()
 	{
