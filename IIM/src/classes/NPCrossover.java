@@ -1,17 +1,36 @@
 package classes;
 
 import java.util.Arrays;
+
 import org.vu.contest.ContestEvaluation;
 
-public class UniformCrossover extends Combination
+public class NPCrossover extends Combination
 {
-	//p misschien af laten hangen van de fittness van de twee Individuals?
-	private static double p = 0.5;
+	private int nrSplits;
+	private int[] splits;
 	
-	public UniformCrossover(Individual[] individuals, ContestEvaluation evaluation)
+	public NPCrossover(Individual[] individuals, ContestEvaluation evaluation, int nrSplits)
 	{
+		this.nrSplits = nrSplits;
 		this.individuals = individuals;
 		evaluation_ = evaluation;
+		splits = new int[nrSplits];
+		fillSplits();
+	}
+	
+	private void fillSplits()
+	{
+		int rand;
+		
+		for (int i = 0; i < nrSplits; i++)
+		{
+			rand = getRandomInt(individuals.length) + 1;
+			while(false)//rand nog niet in de splits array
+			{
+				//rand = getRandomInt(individuals.length) + 1;
+			}
+			splits[i] = rand;
+		}
 	}
 	
 	public Individual[] createParents()
@@ -33,21 +52,14 @@ public class UniformCrossover extends Combination
 	{
 		double[] genotype1 = new double[ind1.GENOTYPE_LENGTH];
 		double[] genotype2 = new double[ind1.GENOTYPE_LENGTH];
-		double[] random = new double[ind1.GENOTYPE_LENGTH];
-		
-		Arrays.fill(random,getRandomDouble());
-		
-		for(int i = 0; i < random.length; i++)
+		int split = getRandomInt(ind1.GENOTYPE_LENGTH) + 1;
+				
+		for(int j = 0; j < nrSplits; j++)
 		{
-			if(random[i] <= p)
+			for(int i = 0; i < splits[j]; i++)
 			{
 				genotype1[i]=ind1.getGene(i);
 				genotype2[i]=ind2.getGene(i);
-			}
-			else
-			{
-				genotype1[i]=ind2.getGene(i);
-				genotype2[i]=ind1.getGene(i);
 			}
 		}
 		
@@ -60,5 +72,7 @@ public class UniformCrossover extends Combination
 		{
 			
 		}
+		
 	}
+
 }
