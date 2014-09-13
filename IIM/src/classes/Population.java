@@ -37,7 +37,7 @@ public class Population
 	
 	public void selectParents()
 	{
-		
+		UniformCrossover UC = new UniformCrossover(individuals, evaluation_);
 		
 		
 	}

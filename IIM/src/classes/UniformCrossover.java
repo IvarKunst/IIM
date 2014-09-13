@@ -23,7 +23,7 @@ public class UniformCrossover
 		nrParents = 0;
 	}
 	
-	public void createParents(Individual ind1, Individual ind2)
+	void createParents(Individual ind1, Individual ind2)
 	{
 		double[] genotype1 = new double[ind1.GENOTYPE_LENGTH];
 		double[] genotype2 = new double[ind1.GENOTYPE_LENGTH];
