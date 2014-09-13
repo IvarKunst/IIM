@@ -63,7 +63,7 @@ public class player1
 			{
 				population.selectParents();
 				population.evaluateIndividuals();
-				population.getFittest();
+				//population.getFittest();
 			}
 			// Run your algorithm here
 	

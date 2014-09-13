@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Arrays;
+
 public class Statistics 
 {
     double[] data;
@@ -48,7 +50,4 @@ public class Statistics
           return b[b.length / 2];
        }
     }
-}
-
-
 }

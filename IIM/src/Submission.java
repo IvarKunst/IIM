@@ -62,7 +62,7 @@ public class Submission
 			{
 				population.selectParents();
 				population.evaluateIndividuals();
-				population.getFittest();
+				//population.getFittest();
 			}
 			// Run your algorithm here
 	
