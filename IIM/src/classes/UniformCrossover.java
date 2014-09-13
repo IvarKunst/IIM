@@ -23,7 +23,22 @@ public class UniformCrossover
 		nrParents = 0;
 	}
 	
-	void createParents(Individual ind1, Individual ind2)
+	public Individual[] createParents()
+	{
+		Individual ind1;
+		Individual ind2;
+		
+		for(int i=0; nrParents< this.individuals.length; i++)
+		{
+			//ind1 = getFittest();
+			//ind2 = getFittest();
+			//combineIndividuals(ind1, ind2);
+		}
+		
+		return parents;
+	}
+	
+	private void combineIndividuals(Individual ind1, Individual ind2)
 	{
 		double[] genotype1 = new double[ind1.GENOTYPE_LENGTH];
 		double[] genotype2 = new double[ind1.GENOTYPE_LENGTH];
@@ -33,7 +48,7 @@ public class UniformCrossover
 		
 		for(int i = 0; i < random.length; i++)
 		{
-			if(random[i]< p)
+			if(random[i] <= p)
 			{
 				genotype1[i]=ind1.getGene(i);
 				genotype2[i]=ind2.getGene(i);
@@ -54,7 +69,6 @@ public class UniformCrossover
 		{
 			
 		}
-		
 	}
 	
 	private void addParent(double[] genotype) throws Exception
@@ -62,6 +76,7 @@ public class UniformCrossover
 		if(nrParents < parents.length)
 		{
 			parents[nrParents] = new Individual(evaluation_, genotype);
+			nrParents++;
 		}
 		else
 		{
@@ -75,9 +90,9 @@ public class UniformCrossover
 		return rand.nextDouble();
 	}
 	
-	public Individual[] getIndividuals()
+	public Individual[] getParents()
 	{
-		return individuals;
+		return parents;
 	}
 	
 }
