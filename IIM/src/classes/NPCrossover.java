@@ -8,7 +8,6 @@ public class NPCrossover extends Combination
 {
 	private int nrSplits;
 	private int[] splits;
-	private int test;
 	
 	public NPCrossover(Individual[] individuals, ContestEvaluation evaluation, int nrSplits)
 	{
@@ -26,12 +25,14 @@ public class NPCrossover extends Combination
 		for (int i = 0; i < nrSplits; i++)
 		{
 			rand = getRandomInt(individuals.length) + 1;
-			while(false)//rand nog niet in de splits array
+			while(Arrays.asList(splits).contains(rand))
 			{
-				//rand = getRandomInt(individuals.length) + 1;
+				rand = getRandomInt(individuals.length) + 1;
 			}
 			splits[i] = rand;
 		}
+		
+		Arrays.sort(splits);
 	}
 	
 	public Individual[] createParents()
@@ -53,15 +54,32 @@ public class NPCrossover extends Combination
 	{
 		double[] genotype1 = new double[ind1.GENOTYPE_LENGTH];
 		double[] genotype2 = new double[ind1.GENOTYPE_LENGTH];
-		int split = getRandomInt(ind1.GENOTYPE_LENGTH) + 1;
-				
-		for(int j = 0; j < nrSplits; j++)
+		int indGenotype = 1;
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		int split;
+		
+		while(i < genotype1.length && j < nrSplits)
 		{
-			for(int i = 0; i < splits[j]; i++)
+			split = splits[j];
+			if(split == i)
+			{
+				indGenotype = indGenotype * -1;
+				j++;
+			}
+			
+			if (indGenotype == 1)
 			{
 				genotype1[i]=ind1.getGene(i);
 				genotype2[i]=ind2.getGene(i);
 			}
+			else
+			{
+				genotype1[i]=ind2.getGene(i);
+				genotype2[i]=ind1.getGene(i);
+			}
+			i++;
 		}
 		
 		try
