@@ -8,6 +8,7 @@ public class NPCrossover extends Combination
 {
 	private int nrSplits;
 	private int[] splits;
+	private int test;
 	
 	public NPCrossover(Individual[] individuals, ContestEvaluation evaluation, int nrSplits)
 	{
